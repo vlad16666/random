@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+
+		.boxs {
+			height: 100px;
+			width: 100px;
+			background-color: green;
+			border: solid;
+			position: absolute;
+		}
+		.firsBox {
+			background-color: white;
+			background-image: url(duckl.png);
+		}
+
+	</style>
+</head>
+<body>
+	<div class="content">
+		<h4 style="margin-left: 20px">Score: <span class="score">150</span></h4>
+		<img src="dice.png" class="bt" style="width: 100px; margin-left: 20px">		
+		<div class="boxs firsBox" style="margin-left: 20px">
+			<h4>finish</h4>
+		</div>
+		<div class="boxs" style="margin-left: 130px">1</div>
+		<div class="boxs" style="margin-left: 240px">2</div>
+		<div class="boxs" style="margin-left: 350px; background-color: red">3</div>
+				
+		<div class="boxs" style="margin-left: 460px">4</div> 
+		<div class="boxs" style="margin-left: 570px">5</div>
+		<div class="boxs" style="margin-left: 680px;  background-color: red">6</div>
+		<div class="boxs" style="margin-left: 790px">7</div>
+
+		<div class="boxs" style="margin-left: 900px">8</div>
+		<div class="boxs" style="margin-left: 1010px;background-color: red" >9</div>
+		<div class="boxs" style="margin-left: 1120px">10</div>
+		<div class="boxs" style="margin-left: 1230px">11</div>
+
+		<div class="boxs" style="margin-left: 1340px;background-color: red">12 
+			<p>иди назад на -5 клеток</p>
+		</div>
+		<div class="boxs" style="margin-left: 1340px; margin-top: 110px">13</div>
+		<div class="boxs" style="margin-left: 1340px; margin-top: 220px">14</div>	
+		<div class="boxs" style="margin-left: 1340px; margin-top: 330px">15</div>		
+
+		<div class="boxs" style="margin-left: 1340px; margin-top: 440px">16</div>
+		<div class="boxs" style="margin-left: 1230px; margin-top: 440px">17</div>
+		<div class="boxs" style="margin-left: 1120px; margin-top: 440px;">18</div>
+		<div class="boxs" style="margin-left: 1010px; margin-top: 440px">19</div>
+
+		<div class="boxs" style="margin-left: 900px; margin-top: 440px">20</div>
+		<div class="boxs" style="margin-left: 790px; margin-top: 440px">21</div>
+		<div class="boxs" style="margin-left: 680px; margin-top: 440px; background-image: url(win.jpg); background-size: 100% 100%">22</div>
+		<div class="boxs" style="margin-left: 570px; margin-top: 440px">23</div>
+
+		<div class="boxs" style="margin-left: 460px; margin-top: 440px">24</div>
+		<div class="boxs" style="margin-left: 350px; margin-top: 440px;  background-image: url(back.webp); background-size: 100% 100%">25</div>
+		<div class="boxs" style="margin-left: 240px; margin-top: 440px">26</div>
+		<div class="boxs" style="margin-left: 130px; margin-top: 440px">27</div>
+
+		<div class="boxs" style="margin-left: 20px; margin-top: 440px;  background-image: url(win.jpg); background-size: 100% 100%">28</div>
+		<div class="boxs" style="margin-left: 20px; margin-top: 330px">29</div>
+		<div class="boxs" style="margin-left: 20px; margin-top: 220px">30</div>	
+		<div class="boxs" style="margin-left: 20px; margin-top: 110px; background-image: url(lovushka.jpg); background-size: 100% 100%">31</div>		
+
+		<!--последние дивы-->
+		<div class="boxs" style="margin-left: 130px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 240px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 350px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 460px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 570px; margin-top: 110px; background-color: green; opacity: 0"></div>
+		<div class="boxs" style="margin-left: 680px; margin-top: 110px; background-color: green; opacity: 0"></div>
+
+	</div>	
+	<script type="text/javascript">
+		
+	let duck = document.querySelector(".duck");
+	let button = document.querySelector(".bt");
+	let score = document.querySelector(".score");
+	let point = 150;
+	let boxes = document.querySelectorAll(".boxs");
+ 	let go = 0;
+
+	
+		score.innerHTML = point;
+
+	button.onclick = function(){
+		point = point + 10;
+		score.innerHTML = point;
+		boxes[go].style.backgroundImage = 'none';
+		let rand = Math.round(Math.random() * 6)
+		
+		go = go + rand 
+
+		alert('Иди на ' + rand + ',тебе  на клетку ' + go)			
+
+		boxes[go].style.backgroundImage = 'url(duckl.png)';
+
+		if (rand==0) {
+			score = score + 0; //столкнутся с проблемой
+		
+		}
+		if (go == 31) {
+			alert("lose");
+			cont = document.querySelector('.content');
+			cont.style.display = "none";
+		}
+		if (go == 22 || go ==28) {
+			cont = document.querySelector('.content');
+			alert("early win !!!") ;
+			cont.style.display = "none";
+		}
+		if (go == 25) {
+			alert("sorry");
+			go = go - 24;
+			boxes[25].style.backgroundImage = 'none';
+			boxes[go].style.backgroundImage = 'url(duckl.png)';
+		}
+		
+		if (go > 31) {
+			cont = document.querySelector('.content');
+			alert("win") ;
+			cont.style.display = "none";
+		} 
+
+
+
+		if (go ==3 || go == 6 || go == 9) {
+			alert(" минус! Иди на клетку назад");
+			go = go- 1	
+			point = point - 20; 
+			score.innerHTML = point;
+			boxes[3].style.backgroundImage = 'none';
+			boxes[6].style.backgroundImage = 'none';
+			boxes[9].style.backgroundImage = 'none';
+			boxes[go].style.backgroundImage = 'url(duckl.png)';
+			
+		} 
+
+		if (go==12) {
+      alert(" неповезло( На пять клеток назад");
+      		point = point - 50; 
+      		score.innerHTML = point;
+			go = go - 5	
+			boxes[12].style.backgroundImage = 'none';
+			boxes[go].style.backgroundImage ='url(duckl.png)';
+		}
+		if (score>100) {
+			alert("lose");
+			cont = document.querySelector('.content');
+			cont.style.display = "none";
+
+		}
+	
+	}
+
+	</script>
+		
+</body>
+</html>
